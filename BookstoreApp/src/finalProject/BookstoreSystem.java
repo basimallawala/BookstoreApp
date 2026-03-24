@@ -14,9 +14,42 @@ import java.util.ArrayList;
  */
 public class BookstoreSystem {
     ArrayList<Book> bookList;
+    ArrayList<Customer> customerList;
 
-    public BookstoreSystem() {
-        this.bookList = new ArrayList<>();
+    public BookstoreSystem(ArrayList<Book> bookList, ArrayList<Customer> customerList) {
+        this.bookList = bookList;
+        this.customerList = customerList;
     }
+
+    public void addBook(Book book) {
+        bookList.add(book);
+    }
+    
+    public void removeBook(Book book) {
+        bookList.remove(book);
+    }
+    
+    public void addCustomer(Customer customer) {
+        customerList.add(customer);
+    }
+    
+    public ArrayList<Customer> getCustomers() {
+        return customerList;
+    }
+    
+    public void deleteCustomer(Customer customer) {
+        customerList.remove(customer);
+    }
+    
+    // Load the bookstore data from the machine.
+    public void loadData() {
+        
+    }
+    
+    // Push the bookstore data to a text file.
+    public void saveData() {
+        
+    }
+    
     
 }
