@@ -1,0 +1,1 @@
+This is the final project for the COE528 Java course written by Basim Allawala, Ishan Dubey and Soolay (??) in the W2026 semester. It implements a simple Java bookstore using the Swing GUI package a state design pattern.
