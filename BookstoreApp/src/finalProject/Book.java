@@ -12,7 +12,8 @@ public class Book {
     private String name;
     private double price;
 
-    public Book(String name) {
+    public Book(String name, double price) {
+        this.price = price;
         this.name = name;
     }
 
