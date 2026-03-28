@@ -6,64 +6,44 @@ package finalProject;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class BookstoreApp {
-    JFrame frame;
-    JPanel container;
-    CardLayout layout;
+    private CardLayout layout;
+    private JPanel container;
+    private AppState currentState;
 
     public BookstoreApp() {
-        frame = new JFrame("Bookstore");
+        
+        JFrame frame = new JFrame("Bookstore");
         layout = new CardLayout();
         container = new JPanel(layout);
-
-        // screens
-        JPanel home = createHomePanel();
-        JPanel cart = createCartPanel();
-        JPanel login = createLoginPanel();
-
-        container.add(home, "HOME");
-        container.add(cart, "CART");
-        container.add(login, "LOGIN");
-
+        
+        container.add(new OwnerStartScreen(this), "OWNERSTART");
+        container.add(new LoginScreen(this), "LOGIN");
+        
         frame.add(container);
-        frame.setSize(400, 300);
+        frame.setSize(800, 600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        
+        setState(new OwnerStartState(this));
+
     }
 
-    private JPanel createHomePanel() {
-        JPanel panel = new JPanel();
-        JButton goToCart = new JButton("Cart");
-
-        goToCart.addActionListener(e -> layout.show(container, "CART"));
-
-        panel.add(goToCart);
-        return panel;
+    public void setState(AppState newState) {
+        if (currentState != null) currentState.exit();
+        currentState = newState;
+        currentState.enter();
     }
 
-    private JPanel createCartPanel() {
-        JPanel panel = new JPanel();
-        JButton back = new JButton("Login");
+    public void show(String name) {
+        layout.show(container, name);
+    }
 
-        back.addActionListener(e -> layout.show(container, "LOGIN"));
-
-        panel.add(back);
-        return panel;
-    
+    public JPanel getContainer() {
+        return container;
     }
     
-    private JPanel createLoginPanel() {
-        JPanel panel = new JPanel();
-        JLabel loginLabel = new JLabel("Welcome to the Bookstore");
-        JButton homeButton = new JButton("Home");
-        homeButton.addActionListener(e -> layout.show(container, "HOME"));
-        
-        panel.add(loginLabel);
-        panel.add(homeButton);
-        
-        return panel;
-    }
-
     public static void main(String[] args) {
         new BookstoreApp();
     }
