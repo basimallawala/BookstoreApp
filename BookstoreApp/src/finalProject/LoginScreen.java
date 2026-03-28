@@ -5,6 +5,7 @@
 package finalProject;
 
 import java.awt.*;
+import java.util.HashSet;
 import javax.swing.*;
 
 /**
@@ -67,15 +68,26 @@ public class LoginScreen extends JPanel {
                 
                 // Let the user enter the admin terminal.
                 // Go to OWNER START SCREEN
-                
-                JOptionPane.showMessageDialog(this, "You are an admin!");
+                app.setState(new OwnerStartState(app));
             }
             
             else {
-                for (Customer c: app.getBookstoreSystem().getCustomers()) {
-                    if (user.equals(c.getUsername()) && user.equals(c.getPassword())) {
-                        JOptionPane.showMessageDialog(this, "This user exists!");
+                boolean foundUser = false;
+                
+                for (Customer c: app.getBookstoreSystem().getCustomerList()) {
+                    if (user.equals(c.getUsername()) && pass.equals(c.getPassword())) {
+                        foundUser = true;
                     }
+                }
+                
+                if (foundUser) {
+                    JOptionPane.showMessageDialog(this, "Login successful!");
+                    // app.setState(new CustomerStartState(app));
+
+
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Login unsuccessful. Try again.");
                 }
             }
         });

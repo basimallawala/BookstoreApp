@@ -21,6 +21,7 @@ public class OwnerCustomersState implements AppState {
     }
 
     public void exit() {
+        bookstoreApp.getBookstoreSystem().saveData();
 
     }
     

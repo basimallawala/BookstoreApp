@@ -11,13 +11,18 @@ package finalProject;
 public class OwnerBooksState implements AppState {
     
     private BookstoreApp bookstoreApp;
-    
+
+    public OwnerBooksState(BookstoreApp bookstoreApp) {
+        this.bookstoreApp = bookstoreApp;
+    }
+
     public void enter() {
         bookstoreApp.show("OWNERBOOKS");
-        
     }
-    
-    public void exit() { }
-    
+
+    public void exit() {
+        bookstoreApp.getBookstoreSystem().saveData();
+
+  }
     
 }

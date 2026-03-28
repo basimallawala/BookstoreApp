@@ -25,6 +25,7 @@ public class BookstoreApp {
         
         container.add(new OwnerStartScreen(this), "OWNERSTART");
         container.add(new LoginScreen(this), "LOGIN");
+        container.add(new OwnerBooksScreen(this), "OWNERBOOKS");
         
         frame.add(container);
         frame.setSize(800, 600);
@@ -52,6 +53,8 @@ public class BookstoreApp {
     public BookstoreSystem getBookstoreSystem() {
         return bookstoreSystem;
     }
+    
+ 
     
     public static void main(String[] args) {
         new BookstoreApp();

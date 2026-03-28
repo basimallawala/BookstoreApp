@@ -38,10 +38,16 @@ public class BookstoreSystem {
         customerList.add(customer);
     }
     
-    public ArrayList<Customer> getCustomers() {
+    public ArrayList<Customer> getCustomerList() {
         return customerList;
     }
+
+    public ArrayList<Book> getBookList() {
+        return bookList;
+    }
     
+    
+   
     public void deleteCustomer(Customer customer) {
         customerList.remove(customer);
     }
@@ -53,26 +59,23 @@ public class BookstoreSystem {
         bookList.clear();
         customerList.clear();
         
-        File customersFile = new File("src\\finalProject\\customers.txt");
-        File booksFile = new File("src\\finalProject\\books.txt");
+        File customersFile = new File("src\\finalProject\\customers.csv");
+        File booksFile = new File("src\\finalProject\\books.csv");
         
-        
-
-
-        
+       
         try {
             
             if (!booksFile.exists()) { booksFile.createNewFile(); }
             if (!customersFile.exists()) { customersFile.createNewFile(); }
             
             // READING CUSTOMER DATA
-            FileReader customerReader = new FileReader("src\\finalProject\\customers.txt");
+            FileReader customerReader = new FileReader("src\\finalProject\\customers.csv");
             Scanner scan = new Scanner(customerReader);
             while(scan.hasNextLine()) {
                 // Get the next line
                 String line = scan.nextLine();
                 
-                String[] customerData = line.split(" ");
+                String[] customerData = line.split(",");
                 
                 // Read the customer data line into the array below and split into values
                 String username = customerData[0];
@@ -95,14 +98,14 @@ public class BookstoreSystem {
             scan.close();
             
             // make another scanner just for the books (i know, not the best..)
-            FileReader bookReader = new FileReader("src\\finalProject\\books.txt");
+            FileReader bookReader = new FileReader("src\\finalProject\\books.csv");
             Scanner bookScan = new Scanner(bookReader);
             
             // Read through the books. much easier
             while(bookScan.hasNextLine()) {
-                String line = scan.nextLine();
+                String line = bookScan.nextLine();
                 
-                String[] bookData = line.split(" ");
+                String[] bookData = line.split(",");
                 
                 // Read the book data into an array of strings
                 String bookName = bookData[0];
@@ -131,7 +134,7 @@ public class BookstoreSystem {
             
             for (Customer c: customerList) {
                 // FORMAT: Username, Password, Points, Status
-                String line = "%s %s %i %s\n";
+                String line = "%s,%s,%i,%s\n";
                 String status;
                 
                 if (c.getPoints() >= 1000) { status = "G"; }
@@ -144,12 +147,12 @@ public class BookstoreSystem {
             customerWriter.close(); // Close up the customer data
             
             // book writing FileWriter
-            FileWriter bookWriter = new FileWriter("src\\finalProject\\books.txt", false);
+            FileWriter bookWriter = new FileWriter("src\\finalProject\\books.csv", false);
             
             // Loop through the booklist.
             for (Book b: bookList) {
                 // FORMAT: book name, book price
-                String line = "%s %d\n";
+                String line = "%s,%d\n";
                 bookWriter.write(line.format(line, b.getName(), b.getPrice()));
             }
             
