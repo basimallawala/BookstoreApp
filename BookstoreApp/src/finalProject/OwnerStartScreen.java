@@ -16,11 +16,9 @@ public class OwnerStartScreen extends JPanel {
         JButton goToCustomers = new JButton("Go to Customers");
         JButton logoutButton = new JButton("Logout");
         
-        goToBooks.addActionListener(e -> bookstoreApp.setState(new OwnerBooksScreen(bookstoreApp)));
-        
-        add(goToBooks);
-        add(goToCustomers);
-        add(logoutButton);
+        goToBooks.addActionListener(e -> bookstoreApp.setState(new LoginState(bookstoreApp)));
     }
+    
+    
     
 }

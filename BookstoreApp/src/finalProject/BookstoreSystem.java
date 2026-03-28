@@ -1,6 +1,7 @@
 package finalProject;
 
 import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,7 +53,18 @@ public class BookstoreSystem {
         bookList.clear();
         customerList.clear();
         
+        File customersFile = new File("src\\finalProject\\customers.txt");
+        File booksFile = new File("src\\finalProject\\books.txt");
+        
+        
+
+
+        
         try {
+            
+            if (!booksFile.exists()) { booksFile.createNewFile(); }
+            if (!customersFile.exists()) { customersFile.createNewFile(); }
+            
             // READING CUSTOMER DATA
             FileReader customerReader = new FileReader("src\\finalProject\\customers.txt");
             Scanner scan = new Scanner(customerReader);

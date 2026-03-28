@@ -5,18 +5,23 @@
 package finalProject;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 public class BookstoreApp {
     private CardLayout layout;
     private JPanel container;
     private AppState currentState;
+    private BookstoreSystem bookstoreSystem;
 
     public BookstoreApp() {
         
         JFrame frame = new JFrame("Bookstore");
         layout = new CardLayout();
         container = new JPanel(layout);
+        
+        this.bookstoreSystem = new BookstoreSystem(new ArrayList<Book>(), new ArrayList<Customer>());
+        bookstoreSystem.loadData();
         
         container.add(new OwnerStartScreen(this), "OWNERSTART");
         container.add(new LoginScreen(this), "LOGIN");
@@ -26,7 +31,7 @@ public class BookstoreApp {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         
-        setState(new OwnerStartState(this));
+        setState(new LoginState(this));
 
     }
 
@@ -42,6 +47,10 @@ public class BookstoreApp {
 
     public JPanel getContainer() {
         return container;
+    }
+    
+    public BookstoreSystem getBookstoreSystem() {
+        return bookstoreSystem;
     }
     
     public static void main(String[] args) {

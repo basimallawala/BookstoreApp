@@ -54,6 +54,31 @@ public class LoginScreen extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(loginButton);
         add(buttonPanel, BorderLayout.SOUTH);
+
+        // Optional: button action
+        loginButton.addActionListener(e -> {
+            String user = usernameField.getText();
+            String pass = new String(passwordField.getPassword());
+            
+            
+             // Checking for username and password
+            
+            if (user.equals("admin") && pass.equals("admin")) {
+                
+                // Let the user enter the admin terminal.
+                // Go to OWNER START SCREEN
+                
+                JOptionPane.showMessageDialog(this, "You are an admin!");
+            }
+            
+            else {
+                for (Customer c: app.getBookstoreSystem().getCustomers()) {
+                    if (user.equals(c.getUsername()) && user.equals(c.getPassword())) {
+                        JOptionPane.showMessageDialog(this, "This user exists!");
+                    }
+                }
+            }
+        });
     }
 }
    
