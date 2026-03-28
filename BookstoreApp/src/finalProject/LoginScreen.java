@@ -5,7 +5,6 @@
 package finalProject;
 
 import java.awt.*;
-import java.util.HashSet;
 import javax.swing.*;
 
 /**

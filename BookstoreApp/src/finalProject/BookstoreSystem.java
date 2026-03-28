@@ -130,11 +130,11 @@ public class BookstoreSystem {
     public void saveData() {
         try {
             // Write the customer data
-            FileWriter customerWriter = new FileWriter("src\\finalProject\\customers.txt", false);
+            FileWriter customerWriter = new FileWriter("src\\finalProject\\customers.csv", false);
             
             for (Customer c: customerList) {
                 // FORMAT: Username, Password, Points, Status
-                String line = "%s,%s,%i,%s\n";
+                String line = "%s,%s,%d,%s\n";
                 String status;
                 
                 if (c.getPoints() >= 1000) { status = "G"; }
@@ -152,7 +152,7 @@ public class BookstoreSystem {
             // Loop through the booklist.
             for (Book b: bookList) {
                 // FORMAT: book name, book price
-                String line = "%s,%d\n";
+                String line = "%s,%.2f\n";
                 bookWriter.write(line.format(line, b.getName(), b.getPrice()));
             }
             
