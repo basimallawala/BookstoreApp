@@ -137,9 +137,9 @@ public class OwnerBooksScreenTest {
     //adding a valid book increases the number of books in the system
     @Test
     public void testAddValidBookIncreasesSystemBookList() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
         int before = app.getBookstoreSystem().bookList.size();
 
         SwingUtilities.invokeAndWait(new Runnable() {
@@ -157,9 +157,9 @@ public class OwnerBooksScreenTest {
     //adding a valid book adds a new row to the table
     @Test
     public void testAddValidBookAddsRowToTable() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
         final DefaultTableModel model = getTableModel();
         int before = model.getRowCount();
 
@@ -178,9 +178,9 @@ public class OwnerBooksScreenTest {
     //adding a valid book clears the input fields after adding.
     @Test
     public void testAddValidBookClearsInputFields() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
 
         SwingUtilities.invokeAndWait(new Runnable() {
             @Override
@@ -198,9 +198,9 @@ public class OwnerBooksScreenTest {
     //verify that the added book stores the correct name.
     @Test
     public void testAddedBookHasCorrectName() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
 
         SwingUtilities.invokeAndWait(new Runnable() {
             @Override
@@ -218,9 +218,9 @@ public class OwnerBooksScreenTest {
     //verify that the added book stores the correct price.
     @Test
     public void testAddedBookHasCorrectPrice() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
 
         SwingUtilities.invokeAndWait(new Runnable() {
             @Override
@@ -240,9 +240,9 @@ public class OwnerBooksScreenTest {
     //if the name field is empty, the book is not added.
     @Test
     public void testAddWithEmptyNameDoesNotAdd() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
         int before = app.getBookstoreSystem().bookList.size();
         scheduleDismissDialogs();
 
@@ -261,9 +261,9 @@ public class OwnerBooksScreenTest {
     //if the price field is empty, the book is not added.
     @Test
     public void testAddWithEmptyPriceDoesNotAdd() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
         int before = app.getBookstoreSystem().bookList.size();
         scheduleDismissDialogs();
 
@@ -282,9 +282,9 @@ public class OwnerBooksScreenTest {
     //if the price is not a valid number, the book is not added.
     @Test
     public void testAddWithNonNumericPriceDoesNotAdd() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
         int before = app.getBookstoreSystem().bookList.size();
         scheduleDismissDialogs();
 
@@ -303,9 +303,9 @@ public class OwnerBooksScreenTest {
     //if the price is negative, the book is not added.
     @Test
     public void testAddWithNegativePriceDoesNotAdd() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
         int before = app.getBookstoreSystem().bookList.size();
         scheduleDismissDialogs();
 
@@ -324,9 +324,9 @@ public class OwnerBooksScreenTest {
     //if a book with the same name already exists, the new book is not added.
     @Test
     public void testAddDuplicateNameDoesNotAdd() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
 
         SwingUtilities.invokeAndWait(new Runnable() {
             @Override
@@ -356,11 +356,11 @@ public class OwnerBooksScreenTest {
     //deleting without selecting a row does not remove any book.
     @Test
     public void testDeleteWithNoSelectionDoesNotRemove() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
-        final JButton deleteBtn     = findButton(ownerBooksScreen, "Delete");
-        final JTable table          = getTable();
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
+        final JButton deleteBtn = findButton(ownerBooksScreen, "Delete");
+        final JTable table = getTable();
 
         SwingUtilities.invokeAndWait(new Runnable() {
             @Override
@@ -388,11 +388,11 @@ public class OwnerBooksScreenTest {
     //deleting a selected book removes it from the system list.
     @Test
     public void testDeleteSelectedBookRemovesFromSystem() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
-        final JButton deleteBtn     = findButton(ownerBooksScreen, "Delete");
-        final JTable table          = getTable();
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
+        final JButton deleteBtn = findButton(ownerBooksScreen, "Delete");
+        final JTable table = getTable();
 
         SwingUtilities.invokeAndWait(new Runnable() {
             @Override
@@ -419,11 +419,11 @@ public class OwnerBooksScreenTest {
     //deleting a selected book removes its row from the table.
     @Test
     public void testDeleteSelectedBookRemovesRowFromTable() throws Exception {
-        final JTextField nameField  = getField("bookName");
+        final JTextField nameField = getField("bookName");
         final JTextField priceField = getField("bookPrice");
-        final JButton addBtn        = findButton(ownerBooksScreen, "Add");
-        final JButton deleteBtn     = findButton(ownerBooksScreen, "Delete");
-        final JTable table          = getTable();
+        final JButton addBtn = findButton(ownerBooksScreen, "Add");
+        final JButton deleteBtn = findButton(ownerBooksScreen, "Delete");
+        final JTable table = getTable();
         final DefaultTableModel model = getTableModel();
 
         SwingUtilities.invokeAndWait(new Runnable() {

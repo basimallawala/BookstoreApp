@@ -22,6 +22,10 @@ public class BookStoreAppTest {
             public void run() {
                 app = new BookStoreApp();
                 app.setVisible(false); // suppress the window during test runs
+                
+                //clear any data loaded from disk
+                app.getBookstoreSystem().bookList.clear();
+                app.getBookstoreSystem().getCustomerList().clear();
             }
         });
     }
@@ -85,7 +89,7 @@ public class BookStoreAppTest {
     //calling switchTo() twice must leave only the second panel active
     @Test
     public void testSwitchToCalledTwiceKeepsLastPanel() throws Exception {
-        final JPanel first  = new JPanel();
+        final JPanel first = new JPanel();
         final JPanel second = new JPanel();
         SwingUtilities.invokeAndWait(new Runnable() {
             @Override
@@ -104,7 +108,7 @@ public class BookStoreAppTest {
      */
     @Test
     public void testCustomerListStartsEmpty() {
-        assertEquals(0, app.getBookstoreSystem().getCustomers().size());
+        assertEquals(0, app.getBookstoreSystem().getCustomerList().size());
     }
 
     @Test
@@ -117,8 +121,8 @@ public class BookStoreAppTest {
     public void testAddedCustomerIsRetrievable() {
         Customer c = new Customer("alice", "pass", 0, new SilverTier());
         app.getBookstoreSystem().addCustomer(c);
-        assertEquals(1, app.getBookstoreSystem().getCustomers().size());
-        assertEquals("alice", app.getBookstoreSystem().getCustomers().get(0).getUsername());
+        assertEquals(1, app.getBookstoreSystem().getCustomerList().size());
+        assertEquals("alice", app.getBookstoreSystem().getCustomerList().get(0).getUsername());
     }
 
     //ensure books are retrievable

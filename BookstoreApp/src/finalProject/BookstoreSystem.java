@@ -132,7 +132,7 @@ public class BookstoreSystem {
         System.out.println("Saving data..");
         try {
             // Write the customer data
-            FileWriter customerWriter = new FileWriter("src/finalProject/customers.txt", false);
+            FileWriter customerWriter = new FileWriter("src/finalProject/customers.csv", false);
             
             for (Customer c: customerList) {
                 // FORMAT: Username, Password, Points, Status

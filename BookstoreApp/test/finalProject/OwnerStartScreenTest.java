@@ -11,27 +11,7 @@ import java.awt.Container;
 import static org.junit.Assert.*;
 
 /**
- * JUnit 4 tests for OwnerStartScreen.
- *
- * -----------------------------------------------------------------------
- * WHAT OWNERSTARTSCREEN IS RESPONSIBLE FOR
- * -----------------------------------------------------------------------
- *   - Displays exactly three buttons: [Books], [Customers], [Logout].
- *   - [Books]     → navigates to OwnerBooksScreen.
- *   - [Customers] → navigates to OwnerCustomersScreen.
- *   - [Logout]    → returns to LoginScreen.
- *
- * -----------------------------------------------------------------------
- * DEPENDENCY ON BOOKSTORESYSTEM
- * -----------------------------------------------------------------------
- *   - This screen is purely a navigation hub; it does not manipulate data.
- *   - No file I/O is triggered by these tests.
- *
- * -----------------------------------------------------------------------
- * PASS / FAIL SUMMARY
- * -----------------------------------------------------------------------
- *   - All tests pass because all three buttons exist and navigate correctly.
- *   - Exactly three buttons are present on the screen.
+ * @author Sullay
  */
 public class OwnerStartScreenTest {
 
@@ -41,6 +21,7 @@ public class OwnerStartScreenTest {
     @Before
     public void setUp() throws Exception {
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 app = new BookStoreApp();
                 app.setVisible(false);
@@ -52,7 +33,9 @@ public class OwnerStartScreenTest {
 
     @After
     public void tearDown() throws Exception {
+        //dispose the application window after each test to clean up resources
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 if (app != null) {
                     app.dispose();
@@ -61,63 +44,71 @@ public class OwnerStartScreenTest {
         });
     }
 
-    // ------------------------------------------------------------------
-    // Helper methods
-    // ------------------------------------------------------------------
+    //recursively search for a JButton with the given label
+    private JButton findButton(Container root, String label) {
+        for (Component c : root.getComponents()) {
+            if (c instanceof JButton && label.equals(((JButton) c).getText())) {
+                return (JButton) c;
+            }
+            if (c instanceof Container container) {
+                JButton found = findButton(container, label);
+                if (found != null) {
+                    return found;
+                }
+            }
+        }
+        return null;
+    }
 
-    /**
-     * Recursively searches for a JButton by its label text.
-     */
-    private JButton findButton(Container root, String label) { /* unchanged */ }
+    //count all JButtons recursively
+    private int countButtons(Container root) {
+        int count = 0;
+        for (Component c : root.getComponents()) {
+            if (c instanceof JButton) {
+                count++;
+            }
+            if (c instanceof Container container) {
+                count += countButtons(container);
+            }
+        }
+        return count;
+    }
 
-    /**
-     * Recursively counts all JButton instances inside a container.
-     */
-    private int countButtons(Container root) { /* unchanged */ }
-
-    // ------------------------------------------------------------------
-    // Structure tests
-    // ------------------------------------------------------------------
+    //structure tests
 
     @Test
     public void testIsJPanel() {
-        // Confirms that OwnerStartScreen is a JPanel
         assertTrue(ownerStartScreen instanceof JPanel);
     }
 
     @Test
     public void testHasBooksButton() {
-        // Confirms the [Books] button exists
         assertNotNull(findButton(ownerStartScreen, "Books"));
     }
 
     @Test
     public void testHasCustomersButton() {
-        // Confirms the [Customers] button exists
         assertNotNull(findButton(ownerStartScreen, "Customers"));
     }
 
     @Test
     public void testHasLogoutButton() {
-        // Confirms the [Logout] button exists
         assertNotNull(findButton(ownerStartScreen, "Logout"));
     }
 
+    //screen must have exactly three buttons
     @Test
     public void testExactlyThreeButtons() {
-        // Per spec, there should be exactly three buttons on this screen
         assertEquals(3, countButtons(ownerStartScreen));
     }
 
-    // ------------------------------------------------------------------
-    // Navigation — correct destinations
-    // ------------------------------------------------------------------
+    //navigation tests - correct destinations
 
     @Test
     public void testBooksButtonNavigatesToOwnerBooksScreen() throws Exception {
-        // Clicking [Books] navigates to OwnerBooksScreen
         final JButton booksBtn = findButton(ownerStartScreen, "Books");
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 booksBtn.doClick();
             }
@@ -127,9 +118,9 @@ public class OwnerStartScreenTest {
 
     @Test
     public void testCustomersButtonNavigatesToOwnerCustomersScreen() throws Exception {
-        // Clicking [Customers] navigates to OwnerCustomersScreen
         final JButton customersBtn = findButton(ownerStartScreen, "Customers");
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 customersBtn.doClick();
             }
@@ -139,9 +130,9 @@ public class OwnerStartScreenTest {
 
     @Test
     public void testLogoutButtonNavigatesToLoginScreen() throws Exception {
-        // Clicking [Logout] navigates to LoginScreen
         final JButton logoutBtn = findButton(ownerStartScreen, "Logout");
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 logoutBtn.doClick();
             }
@@ -149,15 +140,13 @@ public class OwnerStartScreenTest {
         assertTrue(app.getContentPane() instanceof LoginScreen);
     }
 
-    // ------------------------------------------------------------------
-    // Navigation — wrong destinations
-    // ------------------------------------------------------------------
+    //navigation tests - wrong destinations
 
     @Test
     public void testBooksButtonDoesNotGoToLoginScreen() throws Exception {
-        // [Books] button should NOT navigate to LoginScreen
         final JButton booksBtn = findButton(ownerStartScreen, "Books");
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 booksBtn.doClick();
             }
@@ -167,9 +156,9 @@ public class OwnerStartScreenTest {
 
     @Test
     public void testLogoutButtonDoesNotGoToBooksScreen() throws Exception {
-        // [Logout] button should NOT navigate to OwnerBooksScreen
         final JButton logoutBtn = findButton(ownerStartScreen, "Logout");
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 logoutBtn.doClick();
             }
@@ -179,9 +168,9 @@ public class OwnerStartScreenTest {
 
     @Test
     public void testCustomersButtonDoesNotGoToLoginScreen() throws Exception {
-        // [Customers] button should NOT navigate to LoginScreen
         final JButton customersBtn = findButton(ownerStartScreen, "Customers");
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 customersBtn.doClick();
             }

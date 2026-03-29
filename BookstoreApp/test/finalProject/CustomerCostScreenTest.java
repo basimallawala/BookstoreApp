@@ -53,7 +53,7 @@ public class CustomerCostScreenTest {
         SwingUtilities.invokeAndWait(new Runnable() {
             @Override
             public void run() {
-                // Assign Silver or Gold tier depending on points
+                //assign Silver or Gold tier depending on points
                 CustomerStatus tier = (points >= 1000) ? new GoldTier() : new SilverTier();
                 customer = new Customer("testuser", "testpass", points, tier);
                 screen   = new CustomerCostScreen(app, customer, totalCost);
@@ -238,6 +238,7 @@ public class CustomerCostScreenTest {
 
         //simulate clicking Logout; it should go to LoginScreen
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 logoutBtn.doClick();
             }
@@ -253,6 +254,7 @@ public class CustomerCostScreenTest {
 
         //simulate clicking Logout; it should not go to CustomerStartScreen
         SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
             public void run() {
                 logoutBtn.doClick();
             }
@@ -261,3 +263,4 @@ public class CustomerCostScreenTest {
         assertFalse(app.getContentPane() instanceof CustomerStartScreen);
     }
 }
+
