@@ -55,42 +55,73 @@ public class OwnerBooksScreen extends JPanel {
 
         // Button action
         addButton.addActionListener(e -> {
-            
-            
-            
+
+
+
             //  Check if the book name field is blank.
             if (bookNameField.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Book name must not be blank!");
             }
-            
+
             // sketchy ahh regex code. check if the book name has any letters
             else if (bookPriceField.getText().matches(".*[a-zA-Z].*")) {
                 JOptionPane.showMessageDialog(this, "Book price must not have any letters!");   
             }
-            
+
             // check if the book price is blank
             else if (bookPriceField.getText().isBlank()) {
                 JOptionPane.showMessageDialog(this, "Book price must not be blank!");   
             }
-            
+
             // If the book name and price is okay, send it off.
             else {
                 model.addRow(new Object[]{
                     bookNameField.getText(),
                     bookPriceField.getText()
                 });
-                
-                // BUG: the books wont save to persistent memory (and the customers too, probably)
+
                 bookstoreApp.getBookstoreSystem().getBookList().add(new Book(bookNameField.getText(), Double.parseDouble(bookPriceField.getText())));
-             
+
                 bookNameField.setText("");
                 bookPriceField.setText("");
             }
-            
-            
+    
+        });
+
+        JPanel buttonRow = new JPanel();
+        buttonRow.setLayout(new BoxLayout(buttonRow, BoxLayout.X_AXIS));
+        buttonRow.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        JButton deleteButton = new JButton("Delete");
+        JButton backButton = new JButton("Back");
+
+        // spacing (optional)
+        buttonRow.add(deleteButton);
+        buttonRow.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonRow.add(backButton);
+
+        add(buttonRow);
+        
+        
+        deleteButton.addActionListener(e -> {
+            int selectedRow = table.getSelectedRow();
+            if (selectedRow != -1) {
+                
+                String selectedName = table.getValueAt(selectedRow, 0).toString();
+                String selectedPrice = table.getValueAt(selectedRow, 1).toString();
+                
+                Book selectedBook = new Book(selectedName, Double.parseDouble(selectedPrice));
+                
+                boolean s = bookstoreApp.getBookstoreSystem().getBookList().remove(selectedBook);
+                System.out.println(s); // success?
+                
+                model.removeRow(selectedRow);
+                // Remove the selected book from the bookList.
+                
+            }
         });
         
-
+        backButton.addActionListener(f -> bookstoreApp.setState(new OwnerStartState(bookstoreApp)));
 
     }
     

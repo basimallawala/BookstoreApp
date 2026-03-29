@@ -21,7 +21,6 @@ public class LoginState implements AppState {
     }
 
     public void exit() {
-        bookstoreApp.getBookstoreSystem().saveData();
 
     }
     

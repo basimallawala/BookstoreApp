@@ -128,6 +128,8 @@ public class BookstoreSystem {
     
     // Push the bookstore data to a text file.
     public void saveData() {
+        
+        System.out.println("Saving data..");
         try {
             // Write the customer data
             FileWriter customerWriter = new FileWriter("src\\finalProject\\customers.csv", false);

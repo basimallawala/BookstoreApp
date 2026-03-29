@@ -17,6 +17,18 @@ public class BookstoreApp {
     public BookstoreApp() {
         
         JFrame frame = new JFrame("Bookstore");
+        
+        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                bookstoreSystem.saveData();   // your function
+                frame.dispose();
+                System.exit(0);
+            }
+        });
+
         layout = new CardLayout();
         container = new JPanel(layout);
         
