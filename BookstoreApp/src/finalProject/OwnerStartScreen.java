@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
  */
 public class OwnerStartScreen extends JPanel {
 
-    // buttons for navigating to owner's books or customer screen, as well as login screen
+    //buttons for navigating to owner's books or customer screen, as well as login screen
     private JButton booksButton;
     private JButton customersButton;
     private JButton logoutButton;

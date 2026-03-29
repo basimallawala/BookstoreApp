@@ -24,18 +24,18 @@ import java.awt.event.ActionListener;
  */
 public class LoginScreen extends JPanel {
 
-    // Reference to main app (used to switch screens)
+    //reference to main app (used to switch screens)
     private final BookStoreApp app;
 
-    // Input fields
+    //input fields
     private final JTextField usernameField;
     private final JPasswordField passwordField;
 
-    //Constructor builds the login screen UI
+    //constructor builds the login screen UI
     public LoginScreen(BookStoreApp app) {
         this.app = app;
 
-        // Stack components vertically
+        //stack components vertically
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         //draw title
@@ -112,8 +112,8 @@ public class LoginScreen extends JPanel {
         }
 
         //check all customers
-        for (int i = 0; i < app.getBookstoreSystem().getCustomers().size(); i++) {
-            Customer c = app.getBookstoreSystem().getCustomers().get(i);
+        for (int i = 0; i < app.getBookstoreSystem().getCustomerList().size(); i++) {
+            Customer c = app.getBookstoreSystem().getCustomerList().get(i);
 
             if (c.getUsername().equals(username) && c.getPassword().equals(password)) {
                 app.switchTo(new CustomerStartScreen(app, c));

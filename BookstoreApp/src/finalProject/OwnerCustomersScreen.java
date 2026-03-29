@@ -116,8 +116,8 @@ public class OwnerCustomersScreen extends JPanel {
     //clear and reload table from system
     private void loadCustomersTable() {
         tableModel.setRowCount(0);
-        for (int i = 0; i < system.getCustomers().size(); i++) {
-            Customer c = system.getCustomers().get(i);
+        for (int i = 0; i < system.getCustomerList().size(); i++) {
+            Customer c = system.getCustomerList().get(i);
             tableModel.addRow(new Object[]{c.getUsername(), c.getPassword(), c.getPoints()});
         }
     }
@@ -132,8 +132,8 @@ public class OwnerCustomersScreen extends JPanel {
             return;
         }
 
-        for (int i = 0; i < system.getCustomers().size(); i++) {
-            Customer c = system.getCustomers().get(i);
+        for (int i = 0; i < system.getCustomerList().size(); i++) {
+            Customer c = system.getCustomerList().get(i);
             if (c.getUsername().equalsIgnoreCase(username)) {
                 JOptionPane.showMessageDialog(this, "A customer with that username already exists.");
                 return;
@@ -163,8 +163,8 @@ public class OwnerCustomersScreen extends JPanel {
 
         String username = (String) tableModel.getValueAt(row, 0);
 
-        for (int i = 0; i < system.getCustomers().size(); i++) {
-            Customer c = system.getCustomers().get(i);
+        for (int i = 0; i < system.getCustomerList().size(); i++) {
+            Customer c = system.getCustomerList().get(i);
             if (c.getUsername().equals(username)) {
                 system.deleteCustomer(c);
                 break;

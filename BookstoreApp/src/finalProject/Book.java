@@ -33,5 +33,14 @@ public class Book {
         this.price = price;
     }
     
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        
+        
+        Book b = (Book) o;
+        return (price == b.getPrice()) && (b.name.equals(name));
+    }
     
 }
