@@ -5,7 +5,7 @@ Feature tracker:
 - Multiple screens implemented in Java Swing
   - [x] Login screen
   - [x] Owner start screen
-  - [ ] Owner books screen
+  - [X] Owner books screen
   - [ ] Owner customers screen
   - [ ] Customer start screen
   - [ ] Customer buy screen
