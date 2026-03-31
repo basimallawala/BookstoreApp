@@ -6,8 +6,8 @@ Feature tracker:
   - [x] Login screen
   - [x] Owner start screen
   - [X] Owner books screen
-  - [ ] Owner customers screen
-  - [ ] Customer start screen
-  - [ ] Customer buy screen
-- [ ] Edge case testing
+  - [X] Owner customers screen
+  - [X] Customer start screen
+  - [X] Customer buy screen
+- [X] Edge case testing
 - [x] Loading and saving data to persistent memory
